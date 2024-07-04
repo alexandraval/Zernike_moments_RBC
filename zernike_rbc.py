@@ -67,7 +67,7 @@ def find_true_object(sample_zernike, image_path):
     return annotated_images
 
 # Example usage
-mask = cv2.imread('separated_object_example.png', cv2.IMREAD_GRAYSCALE)
+mask = cv2.imread('separated_object_example.png', cv2.IMREAD_GRAYSCALE) #Replace with mask of a focused RBC
 sample_zernike = compute_zernike_moments(mask) # Replace with the actual Zernike moments
 image_path = 'masks/ERY_030_t00_selected_frames_01355191.png'
 
