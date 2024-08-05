@@ -59,10 +59,7 @@ def evaluate_model(sample_masks, images, true_labels, degrees, thresholds):
                     predicted_label = classify_object(sample_zernike, image, degree, threshold)
                     predicted_labels.append(predicted_label)
 
-                    # # Print predicted labels for Degree: 6, Threshold: 0.15
-                    # if degree == 7 and threshold == 0.17 and sample_name == "20210806_FR008_01_selected_frames_00181351_object_1":
-                    #     print(f'Sample Mask: {sample_name}, Image Index: {idx+1}, True Label: {true_labels[idx]}, Predicted Label: {predicted_label}')
-
+        
                 # Convert true labels to binary for focused RBC evaluation
                 true_labels_binary = [1 if lbl == 1 else 0 for lbl in true_labels]
                 predicted_labels_binary = [1 if lbl == 1 else 0 for lbl in predicted_labels]
@@ -71,13 +68,6 @@ def evaluate_model(sample_masks, images, true_labels, degrees, thresholds):
                 precision = precision_score(true_labels_binary, predicted_labels_binary, zero_division=1)
                 recall = recall_score(true_labels_binary, predicted_labels_binary, zero_division=1)
                 f1 = f1_score(true_labels_binary, predicted_labels_binary, zero_division=1)
-
-                # if degree == 7 and threshold == 0.17 and sample_name == "20210806_FR008_01_selected_frames_00181351_object_1":
-                #     print(f"Sample: {sample_name} Degree: {degree}, Threshold: {threshold}, Precision: {precision:.4f}, Recall: {recall:.4f}, F1-Score: {f1:.4f}")
-
-                # if degree == 7 and threshold == 0.12 and sample_name == "20210806_FR008_01_selected_frames_00734476_object_1":
-                #     print(f"Sample: {sample_name} Degree: {degree}, Threshold: {threshold}, Precision: {precision:.4f}, Recall: {recall:.4f}, F1-Score: {f1:.4f}")
-
 
                 results.append((sample_name, degree, threshold, precision, recall, f1))
     return results
